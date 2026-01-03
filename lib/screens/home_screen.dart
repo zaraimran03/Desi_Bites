@@ -3,7 +3,9 @@ import '../models/food_item.dart';
 import '../data/food_data.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/food_card.dart';
+import '../widgets/menu_drawer.dart';
 import '../utils/cart_manager.dart';
+import 'checkout_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -122,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                '\$${cartItem.foodItem.price.toStringAsFixed(0)} x ${cartItem.quantity}',
+                                'Rs. ${cartItem.foodItem.price.toStringAsFixed(0)} x ${cartItem.quantity}',
                                 style: const TextStyle(
                                   color: Color(0xFF52B788),
                                 ),
@@ -175,17 +177,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Checkout feature coming soon!'),
-                        backgroundColor: Color(0xFF2D6A4F),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CheckoutScreen(),
                       ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF2D6A4F),
+                    foregroundColor: Colors.white,
                   ),
-                  child: const Text('Checkout'),
+                  child: const Text(
+                    'Checkout',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
             ],
           );
@@ -197,6 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MenuDrawer(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,37 +214,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.menu_rounded, size: 28),
+                    icon: const Icon(Icons.menu_rounded, size: 26),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Menu feature coming soon!'),
-                          backgroundColor: Color(0xFF2D6A4F),
-                          duration: Duration(seconds: 1),
-                        ),
-                      );
+                      Scaffold.of(context).openDrawer();
                     },
                     color: const Color(0xFF1B4332),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text(
                             'Assalam-o-Alaikum, Zara',
                             style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF1B4332),
                             ),
                           ),
-                          SizedBox(height: 4),
+                          SizedBox(height: 2),
                           Text(
                             'Aaj kya khana hai?',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF52B788),
                               fontWeight: FontWeight.w500,
                             ),
@@ -264,20 +265,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           right: 0,
                           top: 0,
                           child: Container(
-                            padding: const EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(3),
                             decoration: const BoxDecoration(
                               color: Colors.red,
                               shape: BoxShape.circle,
                             ),
                             constraints: const BoxConstraints(
-                              minWidth: 20,
-                              minHeight: 20,
+                              minWidth: 18,
+                              minHeight: 18,
                             ),
                             child: Text(
                               '${_cartManager.itemCount}',
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize: 10,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
@@ -290,8 +291,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             
+            // Search bar
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 14),
               child: Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFF1F8F4),
@@ -334,8 +336,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         : null,
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 16,
+                      horizontal: 16,
+                      vertical: 12,
                     ),
                   ),
                 ),
@@ -348,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 50,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
                   return CategoryChip(
@@ -365,7 +367,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             
-            const SizedBox(height: 20),
+            const SizedBox(height: 14),
             
             Expanded(
               child: filteredItems.isEmpty
@@ -392,12 +394,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     )
                   : GridView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 0.75,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
                       ),
                       itemCount: filteredItems.length,
                       itemBuilder: (context, index) {

@@ -305,7 +305,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '\$${(foodItem.price * quantity).toStringAsFixed(2)}',
+                          'Rs. ${(foodItem.price * quantity).toStringAsFixed(0)}',
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
