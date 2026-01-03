@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Splash/Intro Screen with dark green background
+/// Displays app branding and tagline
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -31,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     
     _controller.forward();
     
+    // Navigate to home after 3 seconds
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         Navigator.pushReplacementNamed(context, '/home');
@@ -47,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1B4332),
+      backgroundColor: const Color(0xFF1B4332), // Dark green
       body: SafeArea(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -59,6 +62,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 children: [
                   const Spacer(),
                   
+                  // Food icon illustration
                   ScaleTransition(
                     scale: _scaleAnimation,
                     child: Container(
@@ -78,11 +82,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   
                   const SizedBox(height: 60),
                   
+                  // Main tagline
                   const Text(
                     'COMFORT FOOD\nFOR EVERY DAY',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Color(0xFFD8F3DC),
+                      color: Color(0xFFD8F3DC), // Cream color
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                       height: 1.3,
@@ -92,6 +97,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   
                   const Spacer(),
                   
+                  // App name at bottom
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                     decoration: BoxDecoration(
@@ -99,7 +105,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: const Text(
-                      'DESI BITES',
+                      'FOODIE',
                       style: TextStyle(
                         color: Color(0xFFD8F3DC),
                         fontSize: 24,

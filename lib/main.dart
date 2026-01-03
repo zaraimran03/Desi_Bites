@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'screens/splash_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/food_detail_screen.dart';
+import 'screens/checkout_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,6 +53,7 @@ class FoodieApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const HomeScreen(),
         '/detail': (context) => const FoodDetailScreen(),
+        '/checkout': (context) => const CheckoutScreen(),
       },
     );
   }

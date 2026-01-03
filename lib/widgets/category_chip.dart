@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Category Chip Widget
+/// Displays category as a selectable chip with active state
 class CategoryChip extends StatelessWidget {
   final String label;
   final bool isSelected;
@@ -18,13 +20,13 @@ class CategoryChip extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        margin: const EdgeInsets.only(right: 12),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        margin: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
           color: isSelected 
               ? const Color(0xFF2D6A4F) 
               : const Color(0xFFF1F8F4),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
           boxShadow: isSelected
               ? [
                   BoxShadow(
@@ -43,7 +45,7 @@ class CategoryChip extends StatelessWidget {
                   ? Colors.white 
                   : const Color(0xFF52B788),
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-              fontSize: 14,
+              fontSize: 13,
             ),
           ),
         ),

@@ -22,7 +22,7 @@ class FoodCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
               color: const Color(0xFF2D6A4F).withOpacity(0.08),
@@ -36,13 +36,13 @@ class FoodCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ClipRRect(
+                                  ClipRRect(
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
                   ),
                   child: Container(
-                    height: 140,
+                    height: 100,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -52,11 +52,11 @@ class FoodCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 8,
-                  right: 8,
+                                  Positioned(
+                  top: 6,
+                  right: 6,
                   child: Container(
-                    padding: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -69,7 +69,7 @@ class FoodCard extends StatelessWidget {
                     ),
                     child: const Icon(
                       Icons.favorite_border_rounded,
-                      size: 18,
+                      size: 16,
                       color: Color(0xFF2D6A4F),
                     ),
                   ),
@@ -79,7 +79,7 @@ class FoodCard extends StatelessWidget {
             
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +87,7 @@ class FoodCard extends StatelessWidget {
                     Text(
                       foodItem.name,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF1B4332),
                       ),
@@ -95,12 +95,12 @@ class FoodCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 2),
                     
                     Text(
                       '${foodItem.calories} cal',
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 11,
                         color: const Color(0xFF52B788).withOpacity(0.8),
                         fontWeight: FontWeight.w500,
                       ),
@@ -112,9 +112,9 @@ class FoodCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$${foodItem.price.toStringAsFixed(0)}',
+                          'Rs. ${foodItem.price.toStringAsFixed(0)}',
                           style: const TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF2D6A4F),
                           ),
@@ -135,7 +135,7 @@ class FoodCard extends StatelessWidget {
                             icon: const Icon(
                               Icons.add_rounded,
                               color: Colors.white,
-                              size: 20,
+                              size: 18,
                             ),
                             onPressed: () {
                               // Call the callback to update cart count
@@ -156,7 +156,9 @@ class FoodCard extends StatelessWidget {
                                     label: 'VIEW CART',
                                     textColor: Colors.white,
                                     onPressed: () {
-                                      // This will be handled by parent
+                                      if (onViewCart != null) {
+                                        onViewCart!();
+                                      }
                                     },
                                   ),
                                 ),
@@ -164,8 +166,8 @@ class FoodCard extends StatelessWidget {
                             },
                             padding: EdgeInsets.zero,
                             constraints: const BoxConstraints(
-                              minWidth: 36,
-                              minHeight: 36,
+                              minWidth: 32,
+                              minHeight: 32,
                             ),
                           ),
                         ),
